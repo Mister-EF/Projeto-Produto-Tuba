@@ -1,13 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <title>NerveGear | Link Start</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;900&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --accent-blue: #00d2ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Scanline Effect */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        /* Hero Scroll Section */
+        #hero-scroll {
+            height: 400vh;
+            position: relative;
+        }
+
+        .sticky-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+        }
+
+        /* Headset CSS Placeholder */
+        #headset-model {
+            width: 400px;
+            height: 250px;
+            background: linear-gradient(135deg, #eee 0%, #aaa 100%);
+            border-radius: 80px 80px 120px 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5), 0 0 50px rgba(0, 210, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #headset-model::before {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 140px;
+            background: #111;
+            border-radius: 60px;
+            border: 2px solid var(--accent-blue);
+            box-shadow: inset 0 0 20px var(--accent-blue);
+        }
+
+        #headset {
+            opacity: 0;
+            transform: rotateY(-90deg);
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        }
+
+        /* Dynamic HUD Info */
+        .hud-info {
+            position: absolute;
+            bottom: 15vh;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.8;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* Video Layer */
+        #link-start-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            padding: 10rem 2rem;
+            background: var(--bg-deep);
+            position: relative;
+            z-index: 10;
+        }
+
+        .spec-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+        }
+
+        .digital-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+
+
+    </style>
 </head>
 <body>
-    
+    <div class="scanline"></div>
+    <div class="digital-noise"></div>
+
+    <!-- Main Scroll Experience -->
+    <section id="hero-scroll">
+        <div class="sticky-container">
+            <!-- Text Overlay Layer -->
+            <div id="ui-text" class="absolute z-60 text-center pointer-events-none">
+                <h1 id="main-title" class="text-8xl font-black mb-4 tracking-tighter opacity-0 translate-y-10 transition-all duration-1000" style="font-family: 'Space Grotesk';">NERVEGEAR</h1>
+                <p id="sub-title" class="text-blue-400 font-mono tracking-widest opacity-0 transition-all duration-1000 delay-200">NEURAL RECOGNITION SYSTEM</p>
+            </div>
+
+            <!-- Headset Container -->
+            <div id="headset-model-container" class="perspective-1000">
+                <div id="headset-model">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-40">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" "><path d="M5 2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v2H5V2z"/><path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8h18z"/><path d="M12 11v6"/><path d="M8 14h8"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUD Overlay -->
+            <div class="hud-info">
+                <div id="scroll-prompt" class="text-xs mb-2">SCROLL TO CALIBRATE</div>
+                <div id="percent-display" class="text-2xl font-bold text-blue-400">00%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen Video -->
+    <video id="link-start-video" muted playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-tunnel-with-blue-neon-lights-31846-large.mp4" type="video/mp4">
+    </video>
+
+    <!-- Specs Section -->
+    <div class="specs-grid">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold mb-16 text-center tracking-tight">ESPECIFICAÇÕES TÉCNICAS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="spec-card">
+                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Interface Neural</h3>
+                    <p class="text-gray-400 leading-relaxed">Conexão direta BCI (Brain-Computer Interface) com 1.2M canais de transmissão de impulsos nervosos.</p>
+                </div>
+                <div class="spec-card">
+                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Haptic Rigidity</h3>
+                    <p class="text-gray-400 leading-relaxed">Simulação de densidade física com latência sub-atômica para imersão tátil total.</p>
+                </div>
+                <div class="spec-card">
+                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Segurança Bio</h3>
+                    <p class="text-gray-400 leading-relaxed">Sensores de monitoramento cardíaco e respiratório com fail-safe automático de desconexão.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 text-center border-t border-gray-900 bg-black">
+        <p class="text-gray-600 text-sm tracking-widest uppercase">ARGUS DATA SYSTEMS © 2026</p>
+    </footer>
+
+    <script>
+        const heroSection = document.getElementById('hero-scroll');
+        const headset = document.getElementById('headset-model');
+        const headsetContainer = document.getElementById('headset-model-container');
+        const video = document.getElementById('link-start-video');
+        const percentDisplay = document.getElementById('percent-display');
+        const mainTitle = document.getElementById('main-title');
+        const subTitle = document.getElementById('sub-title');
+        const scrollPrompt = document.getElementById('scroll-prompt');
+
+        // Initial entry animation
+        window.onload = () => {
+            mainTitle.classList.remove('opacity-0', 'translate-y-10');
+            subTitle.classList.remove('opacity-0');
+        };
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const containerHeight = heroSection.offsetHeight;
+            
+            // Calculate progress (0 to 1)
+            let progress = scrollY / (containerHeight - windowHeight);
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Update UI
+            const percent = Math.round(progress * 100);
+            percentDisplay.textContent = `${percent.toString().padStart(2, '0')}%`;
+            
+            if(percent > 5) scrollPrompt.classList.add('opacity-0');
+            else scrollPrompt.classList.remove('opacity-0');
+
+            // --- ANIMATION LOGIC ---
+
+            // Phase 1: 0% to 50% - Rotation Y (-90 to 0)
+            if (progress <= 0.5) {
+                const rotationProgress = progress / 0.5;
+                const rotationY = -90 + (90 * rotationProgress);
+                headset.style.transform = `rotateY(${rotationY}deg) scale(1)`;
+                headset.style.opacity = '1';
+                video.style.opacity = '0';
+            } 
+
+            // Phase 2: 50% to 80% - Zoom (Scale 1 to 5)
+            else if (progress > 0.5 && progress <= 0.8) {
+                const zoomProgress = (progress - 0.5) / 0.3;
+                const scale = 1 + (4 * zoomProgress);
+                headset.style.transform = `rotateY(0deg) scale(${scale})`;
+                headset.style.opacity = '1';
+                video.style.opacity = '0';
+                video.pause();
+            }
+
+            // Phase 3: 80% to 100% - Transition into Video
+            else if (progress > 0.8) {
+                const fadeProgress = (progress - 0.8) / 0.2;
+                headset.style.opacity = (1 - fadeProgress).toString();
+                headset.style.transform = `rotateY(0deg) scale(5)`;
+                
+                video.style.opacity = (fadeProgress).toString();
+                video.style.pointerEvents = 'auto';
+                
+                if (video.paused && fadeProgress > 0.5) {
+                    video.play().catch(e => console.log("Video interaction pending"));
+                }
+            }
+        });
+    </script>
 </body>
 </html>
+

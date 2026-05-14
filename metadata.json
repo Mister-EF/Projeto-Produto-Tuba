@@ -1,0 +1,8 @@
+{
+  "name": "NerveGear - Link Start",
+  "description": "Uma experiência cinematográfica imersiva de alta fidelidade para o lançamento do NerveGear, utilizando orquestração de scroll e transformações 3D.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
