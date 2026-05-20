@@ -67,33 +67,23 @@
             overflow: hidden;
             /* Removeu-se o background sólido para o Canvas em z-index: 1 aparecer */
             background: radial-gradient(circle at center, rgba(17, 17, 17, 0.4) 0%, rgba(5, 5, 5, 0.9) 100%);
+            transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Headset CSS Placeholder */
+        /* Headset CSS Container */
         #headset-model {
-            width: 400px;
-            height: 250px;
-            background: linear-gradient(135deg, #eee 0%, #aaa 100%);
-            border-radius: 80px 80px 120px 120px;
+            width: 480px;
+            height: 480px;
+            max-width: 90vw;
+            max-height: 50vh;
+            background: transparent;
             position: relative;
             transform-style: preserve-3d;
-            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5), 0 0 50px rgba(0, 210, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.3s ease;
             opacity: 0;
-        }
-
-        #headset-model::before {
-            content: '';
-            position: absolute;
-            width: 320px;
-            height: 140px;
-            background: #111;
-            border-radius: 60px;
-            border: 2px solid var(--accent-blue);
-            box-shadow: inset 0 0 20px var(--accent-blue);
         }
 
         #headset {
@@ -179,9 +169,8 @@
 
             <div id="headset-model-container" class="perspective-1000">
                 <div id="headset-model">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-40">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v2H5V2z"/><path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8h18z"/><path d="M12 11v6"/><path d="M8 14h8"/></svg>
-                    </div>
+                    <!-- Dynamic scroll image sequence -->
+                    <img id="headset-img" src="assets/ezgif-frame-001.jpg" class="w-full h-full object-contain pointer-events-none filter drop-shadow-[0_0_35px_rgba(0,210,255,0.25)]" alt="NerveGear BCI interface">
                 </div>
             </div>
 
@@ -196,29 +185,436 @@
         <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-tunnel-with-blue-neon-lights-31846-large.mp4" type="video/mp4">
     </video>
 
-    <div class="specs-grid">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-bold mb-16 text-center tracking-tight">ESPECIFICAÇÕES TÉCNICAS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="spec-card">
-                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Interface Neural</h3>
-                    <p class="text-gray-400 leading-relaxed">Conexão direta BCI (Brain-Computer Interface) com 1.2M canais de transmissão de impulsos nervosos.</p>
+    <!-- MAIN CONTENT WRAPPER (Z-INDEX OVERRIDE FOR THE VIDEO LAYOUT) -->
+    <main class="relative z-60 bg-[#050505] overflow-hidden border-t border-gray-900">
+        
+        <!-- --- SECTION 1: CATALOG OF GAMES (LINE-UP) --- -->
+        <section id="launch-lineup" class="py-24 px-4 md:px-8 border-b border-gray-900/50">
+            <div class="max-w-7xl mx-auto">
+                <!-- Title Header -->
+                <div class="text-center mb-16">
+                    <div class="inline-block border border-[#00d2ff]/30 bg-[#00d2ff]/10 px-4 py-1.5 rounded-full text-xs font-mono tracking-widest text-[#00d2ff] mb-4 uppercase animate-pulse">
+                        ⚡ FULLDIVE SYNCHRONIZATION ACTIVE
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tight" style="font-family: 'Space Grotesk';">
+                        LINE-UP DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d2ff] to-[#00ff66]">LANÇAMENTO</span>
+                    </h2>
+                    <p class="text-gray-400 font-mono text-sm mt-3 uppercase tracking-wider">Selecione o seu destino neural e inicie a imersão completa</p>
                 </div>
-                <div class="spec-card">
-                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Haptic Rigidity</h3>
-                    <p class="text-gray-400 leading-relaxed">Simulação de densidade física com latência sub-atômica para imersão tátil total.</p>
-                </div>
-                <div class="spec-card">
-                    <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-wider">Segurança Bio</h3>
-                    <p class="text-gray-400 leading-relaxed">Sensores de monitoramento cardíaco e respiratório com fail-safe automático de desconexão.</p>
+
+                <!-- Carousel Component -->
+                <div class="relative group/carousel max-w-5xl mx-auto" id="games-carousel">
+                    <!-- Viewport -->
+                    <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl shadow-[0_0_50px_rgba(0,210,255,0.05)]">
+                        <div class="flex transition-transform duration-700 ease-out" id="carousel-track">
+                            
+                            <!-- Slide 1: Elden Ring -->
+                            <div class="w-full flex-shrink-0 px-4 md:px-8 py-8 md:py-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                                    <div class="lg:col-span-5 relative group/img overflow-hidden rounded-2xl border border-white/10 aspect-[4/3] lg:aspect-[3/4]">
+                                        <img src="assets/elden-ring.png" alt="Elden Ring FullDive" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                        <div class="absolute top-4 left-4 bg-red-500/20 border border-red-500/50 text-red-400 font-mono text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                            Ação / RPG
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-7 flex flex-col justify-between h-full">
+                                        <div>
+                                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight" style="font-family: 'Space Grotesk';">Elden Ring: FullDive Edition</h3>
+                                            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                                                Explore as Terras Intermédias e enfrente semideuses em combates brutais. Cada golpe de espada, defesa com escudo e feitiço lançado é controlado diretamente pela sua intenção motora.
+                                            </p>
+                                            <div class="border border-[#00d2ff]/20 bg-[#00d2ff]/5 rounded-xl p-5 mb-6">
+                                                <div class="flex items-center gap-2 mb-2 text-[#00d2ff] font-mono text-xs uppercase tracking-wider">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                                    Destaque FullDive
+                                                </div>
+                                                <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                                    Sinta o peso real do metal das armas nas suas mãos virtuais e a resistência do vento ao golpear. O sistema traduz o impacto dos chefes para o seu senso de equilíbrio, exigindo foco mental absoluto.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="w-full sm:w-auto bg-gradient-to-r from-[#00d2ff] to-[#00ff66] hover:from-[#00c2eb] hover:to-[#00ee5e] text-black font-black text-xs md:text-sm px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 group/btn">
+                                                <span>LINK START</span>
+                                                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: The Witcher 3 -->
+                            <div class="w-full flex-shrink-0 px-4 md:px-8 py-8 md:py-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                                    <div class="lg:col-span-5 relative group/img overflow-hidden rounded-2xl border border-white/10 aspect-[4/3] lg:aspect-[3/4]">
+                                        <img src="assets/witcher3.png" alt="The Witcher 3 Neural" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                        <div class="absolute top-4 left-4 bg-purple-500/20 border border-purple-500/50 text-purple-400 font-mono text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                            RPG / Aventura
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-7 flex flex-col justify-between h-full">
+                                        <div>
+                                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight" style="font-family: 'Space Grotesk';">The Witcher 3: Wild Hunt (Neural Cut)</h3>
+                                            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                                                Siga os passos de Geralt de Rívia em um mundo aberto massivo e vivo. Converse com personagens, tome decisões morais complexas e cace feras mitológicas.
+                                            </p>
+                                            <div class="border border-purple-500/20 bg-purple-500/5 rounded-xl p-5 mb-6">
+                                                <div class="flex items-center gap-2 mb-2 text-purple-400 font-mono text-xs uppercase tracking-wider">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                                    Destaque FullDive
+                                                </div>
+                                                <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                                    O NerveGear estimula seu córtex olfativo e visual, permitindo que você sinta o cheiro de monstros na floresta ou rastreie pegadas através do "Sentido de Bruxo" projetado na sua retina.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="w-full sm:w-auto bg-gradient-to-r from-[#00d2ff] to-[#00ff66] hover:from-[#00c2eb] hover:to-[#00ee5e] text-black font-black text-xs md:text-sm px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 group/btn">
+                                                <span>LINK START</span>
+                                                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Counter-Strike 2 -->
+                            <div class="w-full flex-shrink-0 px-4 md:px-8 py-8 md:py-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                                    <div class="lg:col-span-5 relative group/img overflow-hidden rounded-2xl border border-white/10 aspect-[4/3] lg:aspect-[3/4]">
+                                        <img src="assets/cs2.png" alt="CS2 Link-Up" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                        <div class="absolute top-4 left-4 bg-orange-500/20 border border-orange-500/50 text-orange-400 font-mono text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                            FPS / Tático
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-7 flex flex-col justify-between h-full">
+                                        <div>
+                                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight" style="font-family: 'Space Grotesk';">Counter-Strike 2 (CS2: Link-Up)</h3>
+                                            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                                                Terroristas contra Contra-Terroristas em mapas clássicos. Sem controles, mouse ou telas — apenas a sua coordenação olho-mão e reflexos puros.
+                                            </p>
+                                            <div class="border border-orange-500/20 bg-orange-500/5 rounded-xl p-5 mb-6">
+                                                <div class="flex items-center gap-2 mb-2 text-orange-400 font-mono text-xs uppercase tracking-wider">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                                    Destaque FullDive
+                                                </div>
+                                                <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                                    Mira por Intenção Direta. Sua mente comanda o disparo. O recuo (recoil) é recriado através de pequenos impulsos táteis simulados no cérebro, exigindo memória muscular neural.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="w-full sm:w-auto bg-gradient-to-r from-[#00d2ff] to-[#00ff66] hover:from-[#00c2eb] hover:to-[#00ee5e] text-black font-black text-xs md:text-sm px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 group/btn">
+                                                <span>LINK START</span>
+                                                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Gran Turismo 7 -->
+                            <div class="w-full flex-shrink-0 px-4 md:px-8 py-8 md:py-12">
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                                    <div class="lg:col-span-5 relative group/img overflow-hidden rounded-2xl border border-white/10 aspect-[4/3] lg:aspect-[3/4]">
+                                        <img src="assets/gt7.png" alt="GT7 Neuro-Drive" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                        <div class="absolute top-4 left-4 bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 font-mono text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                                            Corrida / Simulação
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-7 flex flex-col justify-between h-full">
+                                        <div>
+                                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight" style="font-family: 'Space Grotesk';">Gran Turismo 7: Neuro-Drive</h3>
+                                            <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                                                Pilote os carros mais icônicos do mundo em pistas reais recriadas milimetricamente.
+                                            </p>
+                                            <div class="border border-emerald-500/20 bg-emerald-500/5 rounded-xl p-5 mb-6">
+                                                <div class="flex items-center gap-2 mb-2 text-emerald-400 font-mono text-xs uppercase tracking-wider">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                                    Destaque FullDive
+                                                </div>
+                                                <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                                    Ao fazer curvas a 300 km/h, o NerveGear estimula seu córtex vestibular, fazendo você sentir a força G de aceleração e frenagem no corpo, sabendo exatamente a aderência dos pneus.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="w-full sm:w-auto bg-gradient-to-r from-[#00d2ff] to-[#00ff66] hover:from-[#00c2eb] hover:to-[#00ee5e] text-black font-black text-xs md:text-sm px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] flex items-center justify-center gap-2 group/btn">
+                                                <span>LINK START</span>
+                                                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="absolute top-1/2 -left-6 md:-left-12 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white flex items-center justify-center backdrop-blur-md transition-all duration-300 hover:border-[#00d2ff] hover:text-[#00d2ff] hover:shadow-[0_0_15px_rgba(0,210,255,0.3)] z-10" id="prev-btn">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button class="absolute top-1/2 -right-6 md:-right-12 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white flex items-center justify-center backdrop-blur-md transition-all duration-300 hover:border-[#00d2ff] hover:text-[#00d2ff] hover:shadow-[0_0_15px_rgba(0,210,255,0.3)] z-10" id="next-btn">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <!-- Indicators Dots -->
+                    <div class="flex justify-center gap-3 mt-8" id="carousel-dots">
+                        <button class="w-3 h-3 rounded-full bg-[#00d2ff] w-8 transition-all duration-300" data-slide="0"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/20 transition-all duration-300" data-slide="1"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/20 transition-all duration-300" data-slide="2"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/20 transition-all duration-300" data-slide="3"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <footer class="py-10 text-center border-t border-gray-900 bg-black">
-        <p class="text-gray-600 text-sm tracking-widest uppercase">ARGUS DATA SYSTEMS © 2026</p>
-    </footer>
+        <!-- --- SECTION 2: TECHNICAL SPECIFICATIONS (RE-STYLE) --- -->
+        <section id="technical-chassis" class="py-24 px-4 md:px-8 border-b border-gray-900/50 relative">
+            <!-- Grid decorative pattern -->
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tight" style="font-family: 'Space Grotesk';">
+                        FICHA TÉCNICA <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d2ff] to-[#00ff66]">ARGUS CORP</span>
+                    </h2>
+                    <p class="text-gray-400 font-mono text-sm mt-3 uppercase tracking-wider">Mapeamento estrutural de hardware e conexões bio-digitais</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Core features (Left columns) -->
+                    <div class="lg:col-span-7 flex flex-col gap-6">
+                        <div class="border border-white/10 bg-white/[0.01] backdrop-blur-xl p-6 rounded-2xl flex gap-5 hover:border-[#00d2ff]/40 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-lg bg-[#00d2ff]/10 border border-[#00d2ff]/30 flex items-center justify-center text-[#00d2ff] flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-[#00d2ff] font-bold font-mono uppercase tracking-wider mb-2 text-lg">Interface Neural Direct-Link</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Conexão direta BCI (Brain-Computer Interface) com 1.2M canais de transmissão. Emite micro-ondas eletromagnéticas de baixa frequência e alta precisão diretamente nas áreas cerebrais correspondentes para simular e substituir os 5 sentidos em tempo real com fidelidade de 99.8%.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border border-white/10 bg-white/[0.01] backdrop-blur-xl p-6 rounded-2xl flex gap-5 hover:border-[#00d2ff]/40 transition-all duration-300 group">
+                            <div class="w-12 h-12 rounded-lg bg-[#00ff66]/10 border border-[#00ff66]/30 flex items-center justify-center text-[#00ff66] flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-[#00ff66] font-bold font-mono uppercase tracking-wider mb-2 text-lg">Bloqueio Motor Sináptico</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Segurança corporal ativa. O sistema intercepta automaticamente todos os comandos de movimentação e reação motora enviados do córtex motor para a medula espinhal, garantindo que seu corpo físico permaneça completamente imóvel, seguro e relaxado em sua cama durante as jogadas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component Table Specs (Right columns) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between border border-white/10 bg-white/[0.01] backdrop-blur-xl p-8 rounded-2xl relative overflow-hidden">
+                        <div class="absolute -right-16 -top-16 w-36 h-36 bg-[#00d2ff]/5 blur-3xl rounded-full"></div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
+                                <h3 class="text-white font-black uppercase tracking-wider" style="font-family: 'Space Grotesk';">Chassi de Componentes</h3>
+                                <span class="font-mono text-[10px] bg-white/10 text-gray-300 px-2 py-0.5 rounded border border-white/20">V.1.0.4a</span>
+                            </div>
+
+                            <table class="w-full text-left font-mono text-sm">
+                                <tbody>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-3.5 text-gray-500 uppercase text-[11px] tracking-wider font-bold">Processador</td>
+                                        <td class="py-3.5 text-gray-200 text-right">Argus Neuro-Core 128-bit</td>
+                                    </tr>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-3.5 text-gray-500 uppercase text-[11px] tracking-wider font-bold">Leitura Sináptica</td>
+                                        <td class="py-3.5 text-gray-200 text-right">256 sensores sinápticos</td>
+                                    </tr>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-3.5 text-gray-500 uppercase text-[11px] tracking-wider font-bold">Transmissão</td>
+                                        <td class="py-3.5 text-gray-200 text-right">M-Wavelength (Micro-ondas)</td>
+                                    </tr>
+                                    <tr class="border-b border-white/5">
+                                        <td class="py-3.5 text-gray-500 uppercase text-[11px] tracking-wider font-bold">Conectividade</td>
+                                        <td class="py-3.5 text-gray-200 text-right">Fibra Óptica Q. + Wi-Fi 6E N.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3.5 text-gray-500 uppercase text-[11px] tracking-wider font-bold">Bateria Backup</td>
+                                        <td class="py-3.5 text-gray-200 text-right">Lítio-Polímero de emergência</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- System diagnostics status -->
+                        <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-400">
+                            <span class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-[#00ff66] animate-ping"></span>
+                                Argus BIOS v4.21: OK
+                            </span>
+                            <span class="text-right text-[#00d2ff]">TEMP: 32.5°C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Warning Block -->
+                <div class="mt-10 bg-red-950/10 border border-red-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-start gap-4 shadow-[0_0_30px_rgba(239,68,68,0.03)] hover:border-red-500/40 transition-colors duration-300">
+                    <div class="p-3 bg-red-500/10 text-red-400 rounded-xl border border-red-500/20 flex-shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-red-400 font-mono font-bold uppercase tracking-wider mb-1 text-sm flex items-center gap-2">
+                            <span>⚠️ Nota de Segurança da Argus (Protocolo de Resfriamento)</span>
+                        </h4>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed font-mono">
+                            O NerveGear possui um sistema de resfriamento interno automatizado por micro-fluxo de ar sináptico. Não obstrua as saídas de ar localizadas nas extremidades traseiras do chassi para prevenir sobrecarga térmica dos chips analógicos e oscilações na integridade do sinal de imersão.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SECTION 3: INITIALIZATION GUIDE --- -->
+        <section id="init-guide" class="py-24 px-4 md:px-8 border-b border-gray-900/50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tight" style="font-family: 'Space Grotesk';">
+                        PROTOCOLO DE <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d2ff] to-[#00ff66]">INICIALIZAÇÃO</span>
+                    </h2>
+                    <p class="text-gray-400 font-mono text-sm mt-3 uppercase tracking-wider">Siga rigorosamente as diretrizes operacionais para ativação</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="relative group p-6 border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/15 rounded-2xl transition-all duration-300 flex flex-col justify-between h-64">
+                        <div>
+                            <div class="text-5xl font-black text-white/5 font-mono mb-4 group-hover:text-[#00d2ff]/10 transition-colors duration-300">01</div>
+                            <h3 class="text-white font-bold font-mono uppercase tracking-wider mb-2 text-base">Prepare o Ambiente</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                Deite-se de forma extremamente confortável em uma cama ou poltrona estável. Remova objetos próximos que possam restringir ou tocar o seu corpo físico.
+                            </p>
+                        </div>
+                        <div class="w-full h-1 bg-white/5 rounded overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-[#00d2ff] to-cyan-500 w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative group p-6 border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/15 rounded-2xl transition-all duration-300 flex flex-col justify-between h-64">
+                        <div>
+                            <div class="text-5xl font-black text-white/5 font-mono mb-4 group-hover:text-[#00d2ff]/10 transition-colors duration-300">02</div>
+                            <h3 class="text-white font-bold font-mono uppercase tracking-wider mb-2 text-base">Ajuste o Capacete</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                Posicione o NerveGear de forma centralizada. Garanta que as alças de aperto laterais e os sensores temporais estejam em contato firme e suave com a sua cabeça.
+                            </p>
+                        </div>
+                        <div class="w-full h-1 bg-white/5 rounded overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-[#00d2ff] to-cyan-500 w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative group p-6 border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/15 rounded-2xl transition-all duration-300 flex flex-col justify-between h-64">
+                        <div>
+                            <div class="text-5xl font-black text-white/5 font-mono mb-4 group-hover:text-[#00d2ff]/10 transition-colors duration-300">03</div>
+                            <h3 class="text-white font-bold font-mono uppercase tracking-wider mb-2 text-base">Conecte à Rede</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                Conecte o cabo de fibra óptica quântica na porta lateral ou estabeleça sincronia com o sinal sem fio Wi-Fi 6E Neural criptografado de alta estabilidade.
+                            </p>
+                        </div>
+                        <div class="w-full h-1 bg-white/5 rounded overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-[#00d2ff] to-cyan-500 w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 (Highlighted LINK START) -->
+                    <div class="relative group p-6 border border-[#00d2ff]/20 bg-[#00d2ff]/5 hover:bg-[#00d2ff]/10 hover:border-[#00d2ff]/40 rounded-2xl transition-all duration-300 flex flex-col justify-between h-64 overflow-hidden">
+                        <div class="absolute -right-8 -top-8 w-24 h-24 bg-[#00ff66]/10 blur-2xl rounded-full"></div>
+                        <div>
+                            <div class="text-5xl font-black text-[#00d2ff]/20 font-mono mb-4">04</div>
+                            <h3 class="text-white font-bold font-mono uppercase tracking-wider mb-2 text-base">O Comando</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed font-light mb-4">
+                                Relaxe o corpo físico, feche os olhos, concentre sua mente e diga o comando de inicialização:
+                            </p>
+                            <!-- Prompt box -->
+                            <div class="relative border border-emerald-500/30 bg-black/50 p-2.5 rounded-lg text-center font-mono overflow-hidden shadow-[0_0_15px_rgba(0,255,102,0.1)]">
+                                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff66] to-transparent animate-pulse"></div>
+                                <span class="text-xs text-gray-500 block mb-1">PROMPT POR VOZ</span>
+                                <span class="text-sm font-black text-[#00ff66] tracking-widest block uppercase animate-pulse">"LINK START!"</span>
+                            </div>
+                        </div>
+                        <div class="w-full h-1 bg-white/5 rounded overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-[#00ff66] to-[#00d2ff] w-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SECTION 4: FAQ ACCORDION --- -->
+        <section id="faq-accordions" class="py-24 px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tight" style="font-family: 'Space Grotesk';">
+                        PERGUNTAS <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00d2ff] to-[#00ff66]">FREQUENTES</span>
+                    </h2>
+                    <p class="text-gray-400 font-mono text-sm mt-3 uppercase tracking-wider">Respostas técnicas sobre a tecnologia FullDive</p>
+                </div>
+
+                <div class="flex flex-col gap-4" id="faq-container">
+                    <!-- Q1 -->
+                    <div class="border border-white/10 bg-white/[0.01] rounded-2xl overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex items-center justify-between font-mono text-sm md:text-base uppercase font-bold text-white hover:bg-white/[0.02] transition-colors focus:outline-none focus:ring-0 gap-4" data-faq-btn>
+                            <span>O NerveGear causa dores de cabeça ou tontura (motion sickness)?</span>
+                            <span class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-xs transition-transform duration-300 flex-shrink-0" data-faq-icon>+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-faq-content>
+                            <div class="p-6 pt-0 border-t border-white/5 text-gray-400 text-sm leading-relaxed font-light">
+                                Não. Ao contrário dos dispositivos de Realidade Virtual (VR) tradicionais, que projetam imagens em telas físicas próximas aos seus olhos causando conflito de convergência visual e motricidade, o NerveGear projeta a informação visual, tátil e espacial diretamente no seu cérebro, simulando as impressões biológicas reais. Isso elimina completamente qualquer conflito sensorial e impossibilita sintomas de motion sickness ou náuseas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="border border-white/10 bg-white/[0.01] rounded-2xl overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex items-center justify-between font-mono text-sm md:text-base uppercase font-bold text-white hover:bg-white/[0.02] transition-colors focus:outline-none focus:ring-0 gap-4" data-faq-btn>
+                            <span>O que acontece se faltar energia na minha casa?</span>
+                            <span class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-xs transition-transform duration-300 flex-shrink-0" data-faq-icon>+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-faq-content>
+                            <div class="p-6 pt-0 border-t border-white/5 text-gray-400 text-sm leading-relaxed font-light">
+                                O NerveGear foi projetado com máxima redundância de segurança. Ele conta com uma bateria interna recarregável de Lítio-Polímero integrada de alta densidade. Se a energia elétrica externa for cortada, o sistema aciona instantaneamente a bateria interna (capaz de manter o sistema ativo por até 30 minutos) e emite um alerta prioritário de emergência para o usuário, iniciando um protocolo de encerramento seguro (logout coordenado) para proteger a integridade mental do jogador.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="border border-white/10 bg-white/[0.01] rounded-2xl overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex items-center justify-between font-mono text-sm md:text-base uppercase font-bold text-white hover:bg-white/[0.02] transition-colors focus:outline-none focus:ring-0 gap-4" data-faq-btn>
+                            <span>Jogos difíceis como Elden Ring causam dor física real?</span>
+                            <span class="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-xs transition-transform duration-300 flex-shrink-0" data-faq-icon>+</span>
+                        </button>
+                        <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out" data-faq-content>
+                            <div class="p-6 pt-0 border-t border-white/5 text-gray-400 text-sm leading-relaxed font-light">
+                                Não. O NerveGear vem equipado de fábrica com limitadores de bio-feedback neural rígidos. Embora o capacete simule sensações táteis (pressão, vento, texturas, pequenos impactos controlados de baixa escala), os impulsos de dor real (nocicepção ativa) são interceptados e atenuados por um filtro digital de segurança certificado pela Argus Corp. Você sentirá o impacto física e psicologicamente de forma simulada e atenuada, impedindo qualquer dano ou sobrecarga ao seu sistema nervoso.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- RE-INTEGRATING FOOTER INSIDE MAIN CONTAINER FLOW --- -->
+        <footer class="py-12 text-center border-t border-white/15 bg-black relative z-10">
+            <p class="text-gray-500 text-xs md:text-sm tracking-widest uppercase font-mono">ARGUS DATA SYSTEMS © 2026</p>
+            <p class="text-gray-700 text-[10px] tracking-widest uppercase font-mono mt-1">FullDive Technology Division • Tokyo, Japan</p>
+        </footer>
+    </main>
 
     <script>
         // --- SELETORES ORIGINAIS ---
@@ -230,6 +626,18 @@
         const mainTitle = document.getElementById('main-title');
         const subTitle = document.getElementById('sub-title');
         const scrollPrompt = document.getElementById('scroll-prompt');
+        const headsetImg = document.getElementById('headset-img');
+        const stickyContainer = heroSection.querySelector('.sticky-container');
+
+        // --- PRELOAD DE IMAGENS DE SCROLL ---
+        const totalFrames = 169;
+        const frameImages = [];
+        for (let i = 1; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNum = i.toString().padStart(3, '0');
+            img.src = `assets/ezgif-frame-${frameNum}.jpg`;
+            frameImages.push(img);
+        }
 
         // --- SISTEMA DE LOGICA DO CANVAS NEON (INCORPORADO) ---
         const canvas = document.getElementById('neonCanvas');
@@ -353,6 +761,20 @@
             let progress = scrollY / (containerHeight - windowHeight);
             progress = Math.max(0, Math.min(1, progress));
 
+            // Atualiza o frame da animação (de 1 a 169, completando em 92% do progresso)
+            const imageProgress = Math.min(1, progress / 0.92);
+            const frameIndex = Math.min(totalFrames, Math.max(1, Math.floor(imageProgress * totalFrames)));
+            if (frameImages[frameIndex - 1]) {
+                headsetImg.src = frameImages[frameIndex - 1].src;
+            }
+
+            // Transição de cor do fundo da section hero scroll (stickyContainer)
+            if (progress > 0.01) {
+                stickyContainer.style.background = 'rgb(182, 186, 197)';
+            } else {
+                stickyContainer.style.background = 'radial-gradient(circle at center, rgba(17, 17, 17, 0.4) 0%, rgba(5, 5, 5, 0.9) 100%)';
+            }
+
             const percent = Math.round(progress * 100);
             percentDisplay.textContent = `${percent.toString().padStart(2, '0')}%`;
             
@@ -367,18 +789,18 @@
                 headset.style.opacity = '1';
                 video.style.opacity = '0';
             } 
-            // Phase 2: 50% to 80% - Zoom
-            else if (progress > 0.5 && progress <= 0.8) {
-                const zoomProgress = (progress - 0.5) / 0.3;
+            // Phase 2: 50% to 92% - Zoom
+            else if (progress > 0.5 && progress <= 0.92) {
+                const zoomProgress = (progress - 0.5) / 0.42;
                 const scale = 1 + (4 * zoomProgress);
                 headset.style.transform = `rotateY(0deg) scale(${scale})`;
                 headset.style.opacity = '1';
                 video.style.opacity = '0';
                 video.pause();
             }
-            // Phase 3: 80% to 100% - Transition into Video
-            else if (progress > 0.8) {
-                const fadeProgress = (progress - 0.8) / 0.2;
+            // Phase 3: 92% to 100% - Transition into Video
+            else if (progress > 0.92) {
+                const fadeProgress = (progress - 0.92) / 0.08;
                 headset.style.opacity = (1 - fadeProgress).toString();
                 headset.style.transform = `rotateY(0deg) scale(5)`;
                 
@@ -390,6 +812,141 @@
                 }
             }
         });
+
+        // --- CAROUSEL LOGIC ---
+        (function() {
+            const track = document.getElementById('carousel-track');
+            const slides = Array.from(track.children);
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const dotsContainer = document.getElementById('carousel-dots');
+            const dots = Array.from(dotsContainer.children);
+            
+            let currentIndex = 0;
+            
+            function updateCarousel(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                
+                currentIndex = index;
+                
+                // Slide translation
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    if (i === currentIndex) {
+                        dot.classList.remove('bg-white/20');
+                        dot.classList.add('bg-[#00d2ff]', 'w-8');
+                    } else {
+                        dot.classList.remove('bg-[#00d2ff]', 'w-8');
+                        dot.classList.add('bg-white/20');
+                    }
+                });
+            }
+            
+            nextBtn.addEventListener('click', () => {
+                updateCarousel(currentIndex + 1);
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                updateCarousel(currentIndex - 1);
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    updateCarousel(index);
+                });
+            });
+            
+            // Auto play with pause on hover
+            let autoPlayInterval = setInterval(() => {
+                updateCarousel(currentIndex + 1);
+            }, 5000);
+            
+            const carouselContainer = document.getElementById('games-carousel');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayInterval);
+            });
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(() => {
+                    updateCarousel(currentIndex + 1);
+                }, 5000);
+            });
+
+            // Swipe support for touch screens
+            let startX = 0;
+            let isDragging = false;
+
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const currentX = e.touches[0].clientX;
+                const diff = startX - currentX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        updateCarousel(currentIndex + 1);
+                    } else {
+                        updateCarousel(currentIndex - 1);
+                    }
+                    isDragging = false;
+                }
+            }, { passive: true });
+
+            track.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // Initialize first slide dot state
+            updateCarousel(0);
+        })();
+
+        // --- FAQ ACCORDION LOGIC ---
+        (function() {
+            const faqButtons = document.querySelectorAll('[data-faq-btn]');
+            
+            faqButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const icon = btn.querySelector('[data-faq-icon]');
+                    const card = btn.parentElement;
+                    
+                    // Close all other accordions
+                    faqButtons.forEach(otherBtn => {
+                        if (otherBtn !== btn) {
+                            const otherContent = otherBtn.nextElementSibling;
+                            const otherIcon = otherBtn.querySelector('[data-faq-icon]');
+                            const otherCard = otherBtn.parentElement;
+                            
+                            otherContent.style.maxHeight = null;
+                            otherIcon.textContent = '+';
+                            otherIcon.style.transform = 'rotate(0deg)';
+                            otherCard.classList.remove('border-[#00d2ff]/30', 'bg-white/[0.03]');
+                            otherCard.classList.add('border-white/10', 'bg-white/[0.01]');
+                        }
+                    });
+                    
+                    // Toggle current accordion
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.textContent = '+';
+                        icon.style.transform = 'rotate(0deg)';
+                        card.classList.remove('border-[#00d2ff]/30', 'bg-white/[0.03]');
+                        card.classList.add('border-white/10', 'bg-white/[0.01]');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.textContent = '-';
+                        icon.style.transform = 'rotate(180deg)';
+                        card.classList.remove('border-white/10', 'bg-white/[0.01]');
+                        card.classList.add('border-[#00d2ff]/30', 'bg-white/[0.03]');
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 </html>
