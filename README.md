@@ -1,6 +1,6 @@
 # NerveGear | Link Start 🧠
 
-Landing page conceitual inspirada no universo de **Sword Art Online**, apresentando o **NerveGear** — um headset fictício de interface neural direta (BCI) que promete imersão total em realidade virtual via tecnologia FullDive.aa
+Landing page conceitual inspirada no universo de **Sword Art Online**, apresentando o **NerveGear** — um headset fictício de interface neural direta (BCI) que promete imersão total em realidade virtual via tecnologia FullDive.
 
 ---
 
